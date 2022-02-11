@@ -9,9 +9,6 @@ from PyQt5.QtTest import *
 from config.kiwoomType import *
 
 
-# 불러온 데이터는 strip를 통해 여백을 없앤다.
-# Desktop\py4e\auto_trading_kiwoom
-
 class Kiwoom(QAxWidget):
     def __init__(self):
         super().__init__()
@@ -48,7 +45,7 @@ class Kiwoom(QAxWidget):
 
 
         ###딕셔너리 모음
-        self.account_stock_dict = {}  # 딕셔너리
+        self.account_stock_dict = {}  
         self.outstanding_share_dict = {}
         self.portfolio_stock_dict = {}
         self.jango_dict = {}
@@ -329,7 +326,8 @@ class Kiwoom(QAxWidget):
 
             if sPrevNext == "2":
                 self.day_kiwoom_db(code=code, sPrevNext=sPrevNext)
-
+    
+            ''' '''
             else:
                 print("총일수 %s" % len(self.calcul_data))
                 pass_success = False
@@ -357,7 +355,7 @@ class Kiwoom(QAxWidget):
 
                     #기울기를 구하는 포인트점, 최고가 최저가 구하는 for문
                     for value in self.calcul_data[:15]:  # 오늘부터 15일 전까지
-                        total_price2 += int(value[1])  # 15읠 종가를 다 더한것
+                        total_price2 += int(value[1])  # 15 종가를 다 더한것
                         count += 1
                         if int(value[1]) <= smallest2 :
                             smallest2 = int(value[1])
@@ -367,22 +365,7 @@ class Kiwoom(QAxWidget):
                             largest2 = int(value[1])
                             count_above2 = count
 
-                    # print("최저가",smallest1)
-                    # print("최고가",largest1)
-
-
-                    # print("최저가2",smallest2)
-                    # print("최고가2",largest2)
-                    #
-                    # print('고가1',largest1)
-                    # print('고가2',largest2)
-                    # print('고가1',count_above1)
-                    # print('고가2',count_above2)
-                    # print('저가1',count_below1)
-                    # print('저가2',count_below2)
-                    # print('저가1',smallest1)
-                    # print('저가2',smallest2)
-
+                  
                     inclination_above = (largest2 - largest1) / (count_above2 - count_above1)
                     inclination_below = (smallest2-smallest1) / (count_below2 - count_below1)
                     print(largest2,"-",largest1,"=",(largest2 - largest1))
@@ -418,67 +401,8 @@ class Kiwoom(QAxWidget):
                         print(self.inclination_above2,"+",self.intercept_above2)
                         print(self.inclination_below2,"+",self.intercept_below2)
 
-                    # moving_average_price1 = total_price1 / 15  # 오늘자의 120일의 평균선이 나온다.
-                    # moving_average_price2 = total_price2 / 15  # 오늘자의 120일의 평균선이 나온다.
-
-
-                #     # 오늘 주가가 120일 선에 걸쳐있는지 확인
-                #     bottom_price = False
-                #     check_price = None
-                #     if int(self.calcul_data[0][7]) <= moving_average_price and moving_average_price <= int(
-                #             self.calcul_data[0][6]):  # 봉이 한번에 선을 뛰어넘어서 봉이 만들어지는 경우는 제외
-                #         print("오늘 주가 120이평선에 걸쳐있는 거 확인 ")
-                #         bottom_price = True
-                #         check_price = int(self.calcul_data[0][6])  # 고가가 이전의 일봉의 저가 보다 높은지 확인하기 위함
-                #
-                #     # 과거 일봉들이 120일 선보다 밑에 있는지 확인, 확인하면서 일봉이 120선보다 위에 있으면 계산 진행
-                #     prev_price = None  # 과거 기준봉의 저가
-                #     if bottom_price == True:
-                #         moving_average_price_prev = 0  # 일수에 맞춰서 120일 평균선을 다시 계산해야한다.
-                #         price_top_moving = False
-                #
-                #         idx = 1  # 과거일자부터 시작하기위해 1! 0은 오늘임
-                #         while True:
-                #             if len(self.calcul_data[idx:]) < 120:
-                #                 print("120일 치가 없음")
-                #                 break
-                #             total_price = 0
-                #             # for = 과거 이동평균선 계산
-                #             for value in self.calcul_data[idx:120 + idx]:  # 과거일자부터 120이평선을 만들기 위해 +idx
-                #                 total_price += int(value[1])
-                #             moving_average_price_prev = total_price / 120
-                #
-                #             if moving_average_price_prev <= int(self.calcul_data[idx][6]) and idx <= 20:
-                #                 print("20일 동안 주가가 120일 이평선과 같거나 위에 있으면 조건 통과 못함")
-                #                 price_top_moving = False
-                #                 break
-                #
-                #             elif int(self.calcul_data[idx][7]) > moving_average_price_prev and idx > 20:
-                #                 print("120선위에 있는 일봉 확인")
-                #                 price_top_moving = True
-                #                 prev_price = int(self.calcul_data[idx][7])
-                #                 break
-                #             idx += 1
-                #
-                #         # 해당부분 평균선이 가장최근 일자의 평균선 가격보자 낮은지 확인
-                #         # 현재의 평균선이 과거의 평균선보다 높은지 그리고 현재의 고가가 과거의 저가보다 높은지
-                #         if price_top_moving == True:
-                #             if moving_average_price > moving_average_price_prev and current_price > prev_price:
-                #                 print("과거 평균선의 가격이 오늘자 평균선 가격보다 낮은 것 확인됨")
-                #                 print("과거 부분의 일봉 저가가 오늘자 일봉의 고가보다 낮은지 확인됨")
-                #                 # 모든 조건의 만족
-                #                 pass_success = True
-                #
-                # if pass_success == True:
-                #     print("조건부 통과됨")
-                #     code_nm = self.dynamicCall("GetMasterCodeName(QString)", code)
-                #     f = open("files/condition_stocks.txt", "a", encoding="utf8")
-                #     f.write("%s\t%s\t%s\n" % (code, code_nm, str(self.calcul_data[0][1])))
-                #     f.close()
-                #
-                # elif pass_success == False:
-                #     print("조건부 해당못함")
-                #
+                
+                
                 self.calcul_data.clear()
                 self.calculator_event_loop.exit()
 
