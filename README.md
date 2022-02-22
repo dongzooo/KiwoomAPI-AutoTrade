@@ -25,4 +25,5 @@ https://user-images.githubusercontent.com/40832965/154905620-34a5ff2d-d85c-46f3-
 
 ### 4. Request
 - 키움증권API 
-- 파이썬 32bit 
+- 파이썬 32bit
+- Pycharm
