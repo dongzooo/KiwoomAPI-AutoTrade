@@ -331,7 +331,7 @@ class Kiwoom(QAxWidget):
             else:
                 print("총일수 %s" % len(self.calcul_data))
                 pass_success = False
-                # 120일 이평선을 그릴만큼의 데이터가 있는가?
+                # 120일 이평선을 그릴만큼의 데이터가 있는가지 판별하는 if
                 if self.calcul_data == None or len(self.calcul_data) < 120:
                     pass_success = False
                 else:
@@ -865,5 +865,3 @@ class Kiwoom(QAxWidget):
     def file_delete(self):
         if os.path.isfile("files/condition_stock.txt"):
             os.remove("files/condition_stock.txt")
-
-    # 66
