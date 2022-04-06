@@ -451,7 +451,7 @@ class Kiwoom(QAxWidget):
 
     # 1 매매조건, 대과거는 평균선위에, 중간과거는 평균선 밑에 현재는 일봉이 평균선과 만났을 때 매매, 120일 편균선
     # preNext 600개 데이터를 초과시 담음 페이지로 넘겨줄떄사용
-    ###market_code개발가이드 기타함수
+    # market_code개발가이드 기타함수
     # 0: 장내,10: 코스닥, 3: ELW, 8: ETF, 50: KONEX, 4: 뮤추얼펀드, 5: 신주인수권 , 6: 리츠, 9: 하이얼펀드 ,30: K - OTC
 
     def get_code_list_by_market(self, market_code):  # market_code 10(코스닥)넘겨줌  #종목코드를 불러옴
@@ -584,7 +584,7 @@ class Kiwoom(QAxWidget):
             cnt += 1
         print(self.portfolio_stock_dict)
 
-    # w
+    # 현재 장중인지 아닌지 판단
     def realdata_slot(self, sCode, sRealType, sRealData):
         if sRealType == "장시작시간":
             fid = self.readType.REALTYPE[sRealType]['장운영구분']
