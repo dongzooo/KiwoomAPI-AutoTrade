@@ -26,5 +26,5 @@ https://user-images.githubusercontent.com/40832965/154905620-34a5ff2d-d85c-46f3-
 ### 4. Requirements
 - 키움증권API 발급 & 키움 Open APi 프로그램 다운로드 링크 <br>
    https://www.kiwoom.com/h/customer/download/VOpenApiInfoView
-- 파이썬 32bit
+- 파이썬 32bit 다운로드 *필수
 - Pycharm
