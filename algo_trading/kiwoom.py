@@ -342,8 +342,8 @@ class Kiwoom(QAxWidget):
                     count, count_above1 ,count_below1, count_above2, count_below2 = 0,0,0,0,0
 
 
-                    for value in self.calcul_data[16:31]:  # 16부터 30일 전까지
-                        total_price1 += int(value[1])  # 15읠 종가를 다 더한것
+                    for value in self.calcul_data[16:31]:  # 16일부터 30일 전까지
+                        total_price1 += int(value[1])  # 15일 종가를 다 더한것
                         count += 1
                         if int(value[1]) <= smallest1 :
                             smallest1 = int(value[1])
@@ -355,7 +355,7 @@ class Kiwoom(QAxWidget):
 
                     #기울기를 구하는 포인트점, 최고가 최저가 구하는 for문
                     for value in self.calcul_data[:15]:  # 오늘부터 15일 전까지
-                        total_price2 += int(value[1])  # 15 종가를 다 더한것
+                        total_price2 += int(value[1])  # 1일~15일 종가를 다 더한것
                         count += 1
                         if int(value[1]) <= smallest2 :
                             smallest2 = int(value[1])
